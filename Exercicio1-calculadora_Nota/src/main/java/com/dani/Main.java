@@ -1,3 +1,10 @@
+/**
+ * Crie uma classe Nota, com três atributos reais chamados: nota1, nota2,
+ * nota3. E crie também dois métodos, cada um para calcular e retornar
+ * diferentes tipos de média. Média Aritmética; e Média ponderada (pesos 2,
+ * 3 e 4 respectivamente).
+ */
+
 package com.dani;
 
 import java.util.Scanner;
