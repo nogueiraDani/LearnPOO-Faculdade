@@ -1,45 +1,25 @@
 package com.dani;
 
-public class Dolar extends Moeda{
-    private double cotacao;
-    private double saldo;
+
+public class Dolar extends Moeda {
 
     public Dolar() {
+        this.cotacao = 0;
     }
 
     @Override
-    public void adicionarValor(double valor) {
-        setSaldo(saldo += valor);
-    }
-
-    public double getCotacao() {
-        return cotacao;
-    }
-
-    public void setCotacao(double cotacao) {
-        this.cotacao = cotacao;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-
-    @Override
-    public void removerValor(double valor) {
-        setSaldo(saldo -= valor);
+    public String getNome() {
+        return "Dolar";
     }
 
     @Override
     public String info() {
-        return String.format("Dolar: US$ %.2f",getSaldo());
+        return String.format("Dolar: US$ %.2f", getSaldo());
     }
 
     @Override
     public double converter() {
-        return 0;
+        return (saldo * cotacao);
     }
+
 }

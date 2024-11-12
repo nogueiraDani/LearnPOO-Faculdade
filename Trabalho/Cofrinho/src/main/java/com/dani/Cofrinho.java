@@ -1,6 +1,7 @@
 package com.dani;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Cofrinho {
 
@@ -9,16 +10,8 @@ public class Cofrinho {
     public Cofrinho() {
     }
 
-
-    public void adicionar(Moeda moeda) {
-        //TODO falta fazer as validações com valores negativos
-        listaMoedas.add(moeda);
-    }
-
-    public void remover(Moeda moeda, double valor) {
-        //TODO falta fazer as validações com valores negativos
-        moeda.removerValor(valor);
-
+    public void adicionar(Moeda... moedas) {
+        listaMoedas.addAll(Arrays.asList(moedas));
     }
 
     public void listarMoedas() {
@@ -27,11 +20,12 @@ public class Cofrinho {
         }
     }
 
-
-
     public void exibirTotalConvertido() {
-        //TODO falta fazer essa aqui
-        System.out.println("Falta fazer");
+        double saldoEmReais = 0;
+        for (Moeda m : listaMoedas){
+            saldoEmReais += m.converter();
+        }
+        System.out.printf("Saldo total em Reais: R$ %.2f",saldoEmReais);
     }
 
     public ArrayList<Moeda> getListaMoedas() {

@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static final Scanner scanner = new Scanner(System.in);
+
     public static int mostrarMenuPrincipal() {
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("------- Menu -------");
         System.out.println("1 - Adicionar Moeda");
@@ -14,104 +15,111 @@ public class Main {
         System.out.println("3 - Listar Moeda");
         System.out.println("4 - Exibir saldo total em Reais");
         System.out.println("0 - Sair");
+        System.out.println("Digite a sua opção:");
 
-        return scanner.nextInt();
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            scanner.nextLine();
+            System.out.println("Opção inválida. Digite uma opção válida:");
+            return -1;
+        }
     }
 
     public static int mostrarMenuMoedas() {
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("-- Escolher moeda --");
         System.out.println("1 - Real");
         System.out.println("2 - Dolar");
         System.out.println("3 - Euro");
+        System.out.println("Digite a sua opção:");
 
-        return scanner.nextInt();
+        try {
+            return scanner.nextInt();
+        } catch (InputMismatchException e) {
+            scanner.nextLine();
+            System.out.println("Opção inválida. Digite uma opção válida:");
+            return -1;
+        }
     }
 
     public static double pedirValorParaEditar() {
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("--------------------");
         System.out.println("Digite o valor:");
 
-        return scanner.nextDouble();
+        try {
+            double valor = scanner.nextDouble();
+            if (valor < 0) {
+                System.out.println("Valor inválido, o valor não pode ser " + "negativo.");
+                return pedirValorParaEditar();
+            }
+            return valor;
+        } catch (InputMismatchException e) {
+            scanner.nextLine();
+            System.out.println("Valor inválido.");
+            return pedirValorParaEditar();
+        }
     }
 
+    public static void main(String[] args) {
 
-
-    public static void main(String[] args) throws Exception {
-
-        Scanner scanner = new Scanner(System.in);
-        int opcao;
-        boolean verMenu = true;
-        int tipoMoeda;
         Cofrinho cofrinho = new Cofrinho();
-        cofrinho.adicionar(new Real());
-        cofrinho.adicionar(new Dolar());
-        cofrinho.adicionar(new Euro());
+        cofrinho.adicionar(new Real(), new Euro(), new Dolar());
+
+        int tipoMoeda;
+        boolean verMenu = true;
         double valor;
 
         System.out.println("----- Cofrinho -----");
         System.out.println("--------------------");
+
         while (verMenu) {
-            try {
-                opcao = mostrarMenuPrincipal();
-                //TODO refatorar a validação da
-                // opçao para dentro da funçao
-                if (opcao >= 0 && opcao <= 4) {
-                    switch (opcao) {
-                        case 0:
-                            verMenu = false;
-                            break;
-                        case 1:
-                            tipoMoeda = mostrarMenuMoedas();
-                            valor = pedirValorParaEditar();
-                            switch (tipoMoeda) {
-                                case 1:
-                                    cofrinho.getListaMoedas().get(0).adicionarValor(valor);
-                                    break;
-                                case 2:
-                                    cofrinho.getListaMoedas().get(1).adicionarValor(valor);
-                                    break;
-                                case 3:
-                                    cofrinho.getListaMoedas().get(2).adicionarValor(valor);
-                                    break;
-                            }
-                            break;
-                        case 2:
-                            tipoMoeda = mostrarMenuMoedas();
-                            valor = pedirValorParaEditar();
-                            switch (tipoMoeda) {
-                                case 1:
-                                    cofrinho.getListaMoedas().get(0).removerValor(valor);
-                                    break;
-                                case 2:
-                                    cofrinho.getListaMoedas().get(1).removerValor(valor);
-                                    break;
-                                case 3:
-                                    cofrinho.getListaMoedas().get(2).removerValor(valor);
-                                    break;
-                            }
-                            break;
-                        case 3:
-                            cofrinho.listarMoedas();
-                            break;
-                        case 4:
-                            cofrinho.exibirTotalConvertido();
-                            break;
+
+            int opcao = mostrarMenuPrincipal();
+
+            switch (opcao) {
+                case 0:
+                    verMenu = false;
+                    System.out.println("Programa encerrado.");
+                    break;
+
+                case 1:
+                    tipoMoeda = mostrarMenuMoedas();
+                    valor = pedirValorParaEditar();
+                    if (tipoMoeda >= 1 && tipoMoeda <= 3) {
+                        cofrinho.getListaMoedas().get(tipoMoeda - 1).adicionarValor(valor);
+                    } else {
+                        System.out.println("Opção inválida.");
                     }
-                } else {
-                    System.out.println("Opção inválida, escolha " + "entre 0 e 4");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Opção inválida.");
+                    break;
+
+                case 2:
+                    tipoMoeda = mostrarMenuMoedas();
+                    valor = pedirValorParaEditar();
+                    if (tipoMoeda >= 1 && tipoMoeda <= 3) {
+                        cofrinho.getListaMoedas().get(tipoMoeda - 1).removerValor(valor);
+                    } else {
+                        System.out.println("Opção inválida.");
+                    }
+                    break;
+
+                case 3:
+                    cofrinho.listarMoedas();
+                    break;
+
+                case 4:
+                    cofrinho.exibirTotalConvertido();
+                    break;
+
+                default:
+                    System.out.println("Opção inválida, escolha entre 0 e 4");
             }
-
         }
+
     }
-
-
-
-
 }
+
+
+
+
