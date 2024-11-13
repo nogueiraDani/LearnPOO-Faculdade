@@ -1,4 +1,4 @@
-package com.dani;
+package dani;
 
 import java.util.Scanner;
 
@@ -82,7 +82,7 @@ public abstract class Moeda {
     public void pedirDefinicaoCotacao() {
         /*
          * funação para pedir definicao da  cotação, aqui optei por quando
-         * for a 1ª vez q for add um valor em moedas diferentes do Real
+         * for a 1ª vez q for add um valor em moedas diferentes do dani.Real
          * programa peça para o usuario definir a cotação.
          * quando a cotação já estiver definida, o programa pergunta se deseja
          * editar a cotação

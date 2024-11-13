@@ -1,9 +1,9 @@
-package com.dani;
+package dani;
 
 public class Real extends Moeda {
 
     /*
-     * classe Real que herda Moeda, implementa metodos da classe mae
+     * classe dani.Real que herda dani.Moeda, implementa metodos da classe mae
      */
 
     public Real() {
@@ -23,7 +23,7 @@ public class Real extends Moeda {
     public double converter() {
         /*
          * aqui a função converter nao precisa fazer nenhum calculo, pois o
-         * Real é a moeda base para o sistema.
+         * dani.Real é a moeda base para o sistema.
          */
         return getValorSaldo();
     }

@@ -1,9 +1,9 @@
-package com.dani;
+package dani;
 
 public class Euro extends Moeda {
 
     /*
-     * classe Euro que herda Moeda, implementa metodos da classe mae
+     * classe dani.Euro que herda dani.Moeda, implementa metodos da classe mae
      */
 
     public Euro() {

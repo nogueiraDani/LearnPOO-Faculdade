@@ -1,4 +1,4 @@
-package com.dani;
+package dani;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -95,7 +95,7 @@ public class Main {
         boolean verMenu = true;
         double valor;
 
-        System.out.println("----- Cofrinho -----");
+        System.out.println("----- dani.Cofrinho -----");
         System.out.println("--------------------");
 
         // loop do menu principal
