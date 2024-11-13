@@ -2,8 +2,11 @@ package com.dani;
 
 public class Euro extends Moeda {
 
+    /*
+     * classe Euro que herda Moeda, implementa metodos da classe mae
+     */
+
     public Euro() {
-        this.cotacao = 0;
     }
 
     @Override
@@ -13,11 +16,12 @@ public class Euro extends Moeda {
 
     @Override
     public String info() {
-        return String.format("Euro:      %.2f €", getSaldo());
+        return String.format("Euro:      %.2f €", getValorSaldo());
     }
 
     @Override
     public double converter() {
-        return 0;
+
+        return (getValorSaldo() * getCotacao());
     }
 }

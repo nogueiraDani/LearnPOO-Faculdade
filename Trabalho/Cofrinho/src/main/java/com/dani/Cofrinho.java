@@ -11,7 +11,14 @@ public class Cofrinho {
     }
 
     public void adicionar(Moeda... moedas) {
+    /*
+     * aqui optei por passar como parametro 1 ou mais moedas.
+     */
         listaMoedas.addAll(Arrays.asList(moedas));
+    }
+
+    public void remover(Moeda moeda){
+        listaMoedas.remove(moeda);
     }
 
     public void listarMoedas() {
@@ -21,14 +28,22 @@ public class Cofrinho {
     }
 
     public void exibirTotalConvertido() {
+        /*
+         * função para exibir o total dos valores das contas convertidos em
+         * Real.
+         */
         double saldoEmReais = 0;
         for (Moeda m : listaMoedas){
             saldoEmReais += m.converter();
         }
-        System.out.printf("Saldo total em Reais: R$ %.2f",saldoEmReais);
+        System.out.printf("Saldo total em Reais: R$ %.2f\n",saldoEmReais);
     }
 
     public ArrayList<Moeda> getListaMoedas() {
+        /*
+         *  função para no main poder buscar o objeto
+         * referente a opção
+         */
         return listaMoedas;
     }
 }

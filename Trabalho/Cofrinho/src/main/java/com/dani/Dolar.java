@@ -3,8 +3,11 @@ package com.dani;
 
 public class Dolar extends Moeda {
 
+    /*
+     * classe Dolar que herda Moeda, implementa metodos da classe mae
+     */
+
     public Dolar() {
-        this.cotacao = 0;
     }
 
     @Override
@@ -14,12 +17,12 @@ public class Dolar extends Moeda {
 
     @Override
     public String info() {
-        return String.format("Dolar: US$ %.2f", getSaldo());
+        return String.format("Dolar: US$ %.2f", getValorSaldo());
     }
 
     @Override
     public double converter() {
-        return (saldo * cotacao);
+        return (getValorSaldo() * getCotacao());
     }
 
 }

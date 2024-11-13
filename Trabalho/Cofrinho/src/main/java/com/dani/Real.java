@@ -2,8 +2,11 @@ package com.dani;
 
 public class Real extends Moeda {
 
+    /*
+     * classe Real que herda Moeda, implementa metodos da classe mae
+     */
+
     public Real() {
-        this.cotacao = 0;
     }
 
     @Override
@@ -13,12 +16,15 @@ public class Real extends Moeda {
 
     @Override
     public String info() {
-        return String.format("Real:   R$ %.2f",getSaldo());
+        return String.format("Real:   R$ %.2f", getValorSaldo());
     }
-
 
     @Override
     public double converter() {
-        return saldo;
+        /*
+         * aqui a função converter nao precisa fazer nenhum calculo, pois o
+         * Real é a moeda base para o sistema.
+         */
+        return getValorSaldo();
     }
 }
