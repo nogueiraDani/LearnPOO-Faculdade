@@ -16,7 +16,7 @@ public abstract class Moeda {
         return cotacao;
     }
 
-    public void setCotacao(double cotacao) {
+    public void setCotacao(double cotacao) throws Exception {
         /*
          * função para editar o valor da cotação, não podendo ser 0 ou
          * negativa.
@@ -24,7 +24,7 @@ public abstract class Moeda {
         if (cotacao > 0) {
             this.cotacao = cotacao;
         } else {
-            System.out.println("Valor inválido, a cotação deve ser maior que zero.");
+            throw new Exception();
         }
     }
 
@@ -61,8 +61,7 @@ public abstract class Moeda {
             valorSaldo += valor;
             System.out.printf("%s adicionado com sucesso: %.2f.\n", getNome(), valor);
         } else {
-            System.out.println("O valor para adicionar deve ser maior que " +
-                    "zero");
+            System.out.println("O valor para adicionar deve ser maior que " + "zero");
         }
     }
 
@@ -89,10 +88,13 @@ public abstract class Moeda {
          * editar a cotação
          */
         if (!cotacaoDefinida) {
-            System.out.printf("Por favor defina a cotação do %s\n",
-                    getNome());
-            editarCotacao();
-            cotacaoDefinida = true;
+            System.out.printf("Por favor defina a cotação do %s\n", getNome());
+            try {
+                editarCotacao();
+                cotacaoDefinida = true;
+            } catch (Exception e) {
+                pedirDefinicaoCotacao();
+            }
         } else {
             System.out.printf("Deseja alterar cotação do %s? (S / N)", getNome());
             String resposta = scanner.nextLine().trim();
@@ -113,7 +115,6 @@ public abstract class Moeda {
         System.out.println("Digite a nova cotação:");
 
         try {
-            // TODO ver se aqui nao precisa verificar o negativo.
             double novaCotacao = scanner.nextDouble();
             setCotacao(novaCotacao);
             System.out.printf("A nova cotação de %s é: %.2f\n", getNome(), getCotacao());
